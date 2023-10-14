@@ -37,7 +37,7 @@
      
             if (Input.GetKeyDown(KeyCode.Space)&& isGrounded)
             {
-                rigidBody.AddForce(Vector3.up * jumpHeight);
+                transform.Translate(Vector3.up * jumpHeight);
                 isGrounded=false;
             }
         }

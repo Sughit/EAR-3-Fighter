@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSetup : MonoBehaviour
 {
-    public Movement movement;
+    public Movement2 movement;
     public GameObject camera;
 
     public void IsLocalPlayer()
