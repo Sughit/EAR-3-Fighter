@@ -6,6 +6,7 @@ using Photon.Pun;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public GameObject player;
+    public GameObject weaponManager;
     [Space]
     public Transform spawnPoint;
     bool playerJoined;
@@ -42,8 +43,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         yield return new WaitForSeconds(1f);
         Debug.Log("The player will spawn soon");
-        GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        GameObject _weaponManager = PhotonNetwork.Instantiate(weaponManager.name, Vector3.zero, Quaternion.identity);
         Debug.Log("You joined "+ PhotonNetwork.CurrentRoom.Name);
     }
 
