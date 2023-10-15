@@ -9,6 +9,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [Space]
     public Transform spawnPoint;
     bool playerJoined;
+    public static string roomCode = "test";
     
     void Start()
     {
@@ -30,7 +31,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
 
-        PhotonNetwork.JoinOrCreateRoom("test", null, null);
+        PhotonNetwork.JoinOrCreateRoom(roomCode, null, null);
 
         Debug.Log("We're connected and in a room now");
 
@@ -43,7 +44,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("The player will spawn soon");
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
-        
+        Debug.Log("You joined "+ PhotonNetwork.CurrentRoom.Name);
     }
 
     IEnumerator WaitToJoinARoom()
