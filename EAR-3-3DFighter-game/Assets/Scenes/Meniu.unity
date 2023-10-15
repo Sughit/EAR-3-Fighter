@@ -541,7 +541,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1948862065}
         m_TargetAssemblyTypeName: GetRoomCode, Assembly-CSharp
-        m_MethodName: ManageRoomCode
+        m_MethodName: JoinRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
