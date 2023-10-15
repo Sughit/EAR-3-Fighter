@@ -43,7 +43,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        roomCam.SetActive(false);
         GameObject _weaponManager = PhotonNetwork.Instantiate(weaponManager.name, Vector3.zero, Quaternion.identity);
         Debug.Log("You joined "+ PhotonNetwork.CurrentRoom.Name);
     }
