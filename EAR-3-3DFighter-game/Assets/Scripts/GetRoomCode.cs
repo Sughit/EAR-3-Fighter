@@ -9,7 +9,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
 {
     public Text roomCode;
     public Text joinRoomCode;
-
+//am fost de pe telefon aici
     public static string gameMode;
 
     public void CreateRoom()
