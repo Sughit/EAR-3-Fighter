@@ -26,6 +26,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(joinRoomCode.text);
+        Debug.Log("merge");
     }
 
     public override void OnJoinedRoom()

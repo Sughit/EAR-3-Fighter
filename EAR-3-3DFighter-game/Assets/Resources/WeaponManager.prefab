@@ -1249,11 +1249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f39c13023ba5e49af412e9f78b38e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordP: {fileID: 3148924916901200207, guid: f25d595cc02b54b418c792a4d895ab53, type: 3}
-  spearP: {fileID: 7727924408703322725, guid: e326de01f5d6e8f46bab259fc72ae120, type: 3}
-  hammerP: {fileID: 394479572945876652, guid: 5187fd20e4443e34a98d3437fbf2dc49, type: 3}
-  axeP: {fileID: 870669016647164449, guid: 301f1caca1a73de4598b17de0a81b33b, type: 3}
-  maceP: {fileID: 152570081028080459, guid: 99a032c39810edd49b6bf330ed5ab3b0, type: 3}
+  swordP: {fileID: 2079103563674332598, guid: ed06f30a6f9d4d342b2f52cc5dd3bde2, type: 3}
+  spearP: {fileID: 2079103563674332598, guid: 9d4ab8ec9379f424288700b081b44ff7, type: 3}
+  hammerP: {fileID: 2079103563674332598, guid: b2098158c8346a74587db68e8d7e3096, type: 3}
+  axeP: {fileID: 2079103563674332598, guid: 0be6421ffe481e844a503e4630d135d2, type: 3}
+  maceP: {fileID: 2079103563674332598, guid: e146ccc80c134174d8087e4e2dbe5e77, type: 3}
   spawnPoint: {fileID: 0}
 --- !u!114 &-7176032133340037005
 MonoBehaviour:

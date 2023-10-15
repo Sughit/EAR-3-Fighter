@@ -23,6 +23,7 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     {
         GameObject _player = PhotonNetwork.Instantiate(swordP.name, spawnPoint.position, Quaternion.identity);
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        Debug.Log("merge");
         Destroy(this.gameObject);
     }
 
