@@ -17,7 +17,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
         if(roomCode.text!="")
         {
             PhotonNetwork.AutomaticallySyncScene = true;
-            RoomManager.roomCode = roomCode.text;
+            PhotonNetwork.CreateRoom(roomCode.name);
             switch (gameMode)
             {
                 case "1v1":
@@ -43,7 +43,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.JoinOrCreateRoom(joinRoomCode.name, null, null);
+        PhotonNetwork.JoinRoom(joinRoomCode.name);
     }
 
     public void SetGameMode(string _gameMode)
