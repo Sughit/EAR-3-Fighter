@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Meniu.unity
     guid: 112589c6ebf580e458d5fef801a429b1
   - enabled: 1
-    path: Assets/Scenes/scena1.unity
+    path: Assets/Scenes/1v1.unity
     guid: 82f82aa256fc8c244b0733964f0e1d24
+  - enabled: 1
+    path: Assets/Scenes/1v1DF.unity
+    guid: 518ecc54f2bb9b349aa4dc230c18851b
+  - enabled: 1
+    path: Assets/Scenes/wave.unity
+    guid: d28eb01073b7b1c49b4f6ccbcfd89c3b
   m_configObjects: {}
