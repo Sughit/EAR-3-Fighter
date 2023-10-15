@@ -12,12 +12,26 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
 
     public static string gameMode;
 
-    public void ManageRoomCode()
+    public void CreateRoom()
+    {
+        if(roomCode.text!=null)
+        {
+            if(gameMode!=null)
+            {
+                PhotonNetwork.CreateRoom(roomCode.text);
+            }
+        }
+    }
+
+    public void JoinRoom()
+    {
+        PhotonNetwork.JoinRoom(joinRoomCode.text);
+    }
+
+    public override void OnJoinedRoom()
     {
         if(roomCode.text!="")
         {
-            PhotonNetwork.AutomaticallySyncScene = true;
-            PhotonNetwork.CreateRoom(roomCode.name);
             switch (gameMode)
             {
                 case "1v1":
@@ -34,16 +48,6 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
                 break;
             }
         }
-        else 
-        {
-            Debug.Log("Enter a room code");
-        }
-    }
-
-    public void JoinRoom()
-    {
-        PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.JoinRoom(joinRoomCode.name);
     }
 
     public void SetGameMode(string _gameMode)
