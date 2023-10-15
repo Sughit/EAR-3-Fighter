@@ -27,6 +27,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.AutomaticallySyncScene=true;
         PhotonNetwork.JoinRoom(joinRoomCode.text);
+        Debug.Log("merge");
     }
 
     public override void OnJoinedRoom()
@@ -49,6 +50,11 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
                 break;
             }
         }
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message) 
+    {
+        Debug.Log("Failed to join room ");
     }
 
     public void SetGameMode(string _gameMode)
