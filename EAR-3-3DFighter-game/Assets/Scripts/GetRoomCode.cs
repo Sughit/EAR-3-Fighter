@@ -11,6 +11,16 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public Text joinRoomCode;
 //am fost de pe telefon aici
     public static string gameMode;
+    public Text text;
+    bool canLoadScene;
+
+    void Update()
+    {
+        if(PhotonNetwork.InRoom)
+        {
+            CheckNumOfPlayers();
+        }
+    }
 
     public void CreateRoom()
     {
@@ -32,24 +42,10 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        if(roomCode.text!="")
-        {
-            switch (gameMode)
-            {
-                case "1v1":
-                PhotonNetwork.LoadLevel("1v1");
-                break;
-                case "1v1DF":
-                PhotonNetwork.LoadLevel("1v1DF");
-                break;
-                case "wave":
-                PhotonNetwork.LoadLevel("wave");
-                break;
-                default:
-                Debug.Log("Select a game mode");
-                break;
-            }
-        }
+        Debug.Log("suntem intr-o camera");
+        Debug.Log("in camera "+PhotonNetwork.CurrentRoom.Name);
+        Debug.Log("camera are "+PhotonNetwork.CurrentRoom.PlayerCount);
+        text.text="Suntem intr-o camera| nume: "+PhotonNetwork.CurrentRoom.Name.ToString()+"| nr playeri:"+PhotonNetwork.CurrentRoom.PlayerCount.ToString();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) 
@@ -60,5 +56,35 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public void SetGameMode(string _gameMode)
     {
         gameMode = _gameMode;
+    }
+
+    void CheckNumOfPlayers()
+    {
+        if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            canLoadScene=true;
+            if(canLoadScene)
+            {
+                switch (gameMode)
+                {
+                    case "1v1":
+                    canLoadScene=false;
+                    PhotonNetwork.LoadLevel("1v1");
+                    break;
+                    case "1v1DF":
+                    canLoadScene=false;
+                    PhotonNetwork.LoadLevel("1v1DF");
+                    break;
+                    case "wave":
+                    canLoadScene=false;
+                    PhotonNetwork.LoadLevel("wave");
+                    break;
+                    default:
+                    canLoadScene=false;
+                    Debug.Log("Select a game mode");
+                    break;
+                }
+            }
+        }
     }
 }
