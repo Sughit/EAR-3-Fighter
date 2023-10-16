@@ -43,6 +43,7 @@ public class Movement2 : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
