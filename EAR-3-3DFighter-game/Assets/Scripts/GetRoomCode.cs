@@ -65,7 +65,10 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
             canLoadScene=true;
             if(canLoadScene)
             {
-                switch (gameMode)
+                if(PhotonNetwork.IsMasterClient)
+                {
+                    PhotonNetwork.AutomaticallySyncScene=true;
+                    switch (gameMode)
                 {
                     case "1v1":
                     canLoadScene=false;
@@ -83,6 +86,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
                     canLoadScene=false;
                     Debug.Log("Select a game mode");
                     break;
+                }
                 }
             }
         }
