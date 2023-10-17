@@ -6,7 +6,6 @@ public class atacTest : MonoBehaviour
 {
     Viata viata;
     public float damage = 5f;
-    public GameObject text;
     bool ableToAtac= true;
     public float cooldown = 1f;
     void Start()
@@ -37,7 +36,6 @@ public class atacTest : MonoBehaviour
             else
             {
                 viata.TakeDamage( damageAtac);
-                StartCoroutine(ArataTextTest());
 
                 yield return new WaitForSeconds(cooldown);
                 ableToAtac = true;
@@ -56,11 +54,5 @@ public class atacTest : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
             viata = null;
-    }
-    IEnumerator ArataTextTest()
-    {
-        text.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        text.SetActive(false);
     }
 }
