@@ -14,13 +14,13 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public Text text;
     bool canLoadScene;
 
-    void Update()
-    {
-        if(PhotonNetwork.InRoom)
-        {
-            CheckNumOfPlayers();
-        }
-    }
+    // void Update()
+    // {
+    //     if(PhotonNetwork.InRoom)
+    //     {
+    //         CheckNumOfPlayers();
+    //     }
+    // }
 
     public void CreateRoom()
     {
@@ -58,17 +58,41 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
         gameMode = _gameMode;
     }
 
-    void CheckNumOfPlayers()
+    public void StartGame()
     {
-        if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        // if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        // {
+        //     canLoadScene=true;
+        //     if(canLoadScene)
+        //     {
+        //         //if(PhotonNetwork.IsMasterClient)
+        //         //{
+                    
+        //             switch (gameMode)
+        //         {
+        //             case "1v1":
+        //             canLoadScene=false;
+        //             PhotonNetwork.LoadLevel("1v1");
+        //             break;
+        //             case "1v1DF":
+        //             canLoadScene=false;
+        //             PhotonNetwork.LoadLevel("1v1DF");
+        //             break;
+        //             case "wave":
+        //             canLoadScene=false;
+        //             PhotonNetwork.LoadLevel("wave");
+        //             break;
+        //             default:
+        //             canLoadScene=false;
+        //             Debug.Log("Select a game mode");
+        //             break;
+        //         }
+        //         //}
+        //     }
+        // }
+        if(PhotonNetwork.IsMasterClient)
         {
-            canLoadScene=true;
-            if(canLoadScene)
-            {
-                //if(PhotonNetwork.IsMasterClient)
-                //{
-                    PhotonNetwork.AutomaticallySyncScene=true;
-                    switch (gameMode)
+            switch (gameMode)
                 {
                     case "1v1":
                     canLoadScene=false;
@@ -87,8 +111,6 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
                     Debug.Log("Select a game mode");
                     break;
                 }
-                //}
-            }
         }
     }
 }

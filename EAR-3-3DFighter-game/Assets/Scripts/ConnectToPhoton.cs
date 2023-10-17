@@ -11,6 +11,7 @@ public class ConnectToPhoton : MonoBehaviourPunCallbacks
     void Start()
     {
         Debug.Log("Connecting...");
+        PhotonNetwork.AutomaticallySyncScene=true;
         PhotonNetwork.ConnectUsingSettings();
         text.text="prima faza a trecut";
     }

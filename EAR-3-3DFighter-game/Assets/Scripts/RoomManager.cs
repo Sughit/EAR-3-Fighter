@@ -17,11 +17,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     
     void Start()
     {
-        
-        
-            GameObject _weaponManager = PhotonNetwork.Instantiate(weaponManager.name, Vector3.zero, Quaternion.identity);
-        Debug.Log("You joined "+ PhotonNetwork.CurrentRoom.Name);
-        
+        GameObject _weaponManager = Instantiate(weaponManager, Vector3.zero, Quaternion.identity);
+        // GameObject _player = PhotonNetwork.Instantiate(player.name,Vector3.zero, Quaternion.identity);
+        // _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        Debug.Log("You joined "+ PhotonNetwork.CurrentRoom.Name);   
     }
 
 
