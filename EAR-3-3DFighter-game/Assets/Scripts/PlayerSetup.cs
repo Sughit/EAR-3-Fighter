@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerSetup : MonoBehaviour
 {
-      [Header("enabled")]
+    [Header("enabled")]
     public Movement2 movement;
     public GameObject camera;
     public GameObject triggerAtac;
