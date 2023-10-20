@@ -13,6 +13,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject roomCam;
     bool playerJoined;
     public static string roomCode = "test";
+    public string nume = "1v1";
     
     
     void Start()

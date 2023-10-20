@@ -13,13 +13,13 @@ public class scrisInceput : MonoBehaviour
     {
         PhotonView PV = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
-        SetupText(GetRoomCode.gameMode);
+        SetupText();
         StartCoroutine(DupaCevaTimp());
     }
     [PunRPC]
-    void SetupText(string modDeJoc)
+    void SetupText()
     {
-        switch (modDeJoc)
+        switch (GameObject.Find("RoomManager").GetComponent<RoomManager>().nume)
         {
             case "1v1":
             text.text= "Your goal is to kill the other Enemy";
