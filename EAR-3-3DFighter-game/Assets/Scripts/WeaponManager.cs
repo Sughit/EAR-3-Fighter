@@ -14,6 +14,9 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     [Space]
     public Transform masterSpawnPoint;
     public Transform clientSpawnPoint;
+    [Space]
+    public static string masterPlayer;
+    public static string clientPlayer;
 
     void Awake()
     {
@@ -25,13 +28,13 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsMasterClient)
         {
-            GameObject _player = PhotonNetwork.Instantiate(swordP.name, masterSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            masterPlayer="sword";
+            SpawnPlayer(swordP, masterSpawnPoint);
         }
         else
         {
-            GameObject _player = PhotonNetwork.Instantiate(swordP.name, clientSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            clientPlayer="sword";
+            SpawnPlayer(swordP, clientSpawnPoint);
         }
         Debug.Log("merge");
         Destroy(this.gameObject);
@@ -41,13 +44,13 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsMasterClient)
         {
-            GameObject _player = PhotonNetwork.Instantiate(spearP.name, masterSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            masterPlayer="spear";
+            SpawnPlayer(spearP, masterSpawnPoint);
         }
         else
         {
-            GameObject _player = PhotonNetwork.Instantiate(spearP.name, clientSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            clientPlayer="spear";
+            SpawnPlayer(spearP, clientSpawnPoint);
         }
         Destroy(this.gameObject);
     }
@@ -56,13 +59,13 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsMasterClient)
         {
-            GameObject _player = PhotonNetwork.Instantiate(hammerP.name, masterSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            masterPlayer="hammer";
+            SpawnPlayer(hammerP, masterSpawnPoint);
         }
         else
         {
-            GameObject _player = PhotonNetwork.Instantiate(hammerP.name, clientSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            clientPlayer="hammer";
+            SpawnPlayer(hammerP, clientSpawnPoint);
         }
         Destroy(this.gameObject);
     }
@@ -71,13 +74,13 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsMasterClient)
         {
-            GameObject _player = PhotonNetwork.Instantiate(axeP.name, masterSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            masterPlayer="axe";
+            SpawnPlayer(axeP, masterSpawnPoint);
         }
         else
         {
-            GameObject _player = PhotonNetwork.Instantiate(axeP.name, clientSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            clientPlayer="axe";
+            SpawnPlayer(axeP, clientSpawnPoint);
         }
         Destroy(this.gameObject);
     }
@@ -86,14 +89,21 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.IsMasterClient)
         {
-            GameObject _player = PhotonNetwork.Instantiate(maceP.name, masterSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            masterPlayer="mace";
+            SpawnPlayer(maceP, masterSpawnPoint);
         }
         else
         {
-            GameObject _player = PhotonNetwork.Instantiate(maceP.name, clientSpawnPoint.position, Quaternion.identity);
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            clientPlayer="mace";
+            SpawnPlayer(maceP, clientSpawnPoint);
         }
         Destroy(this.gameObject);
     }
+
+    public void SpawnPlayer(GameObject go, Transform trans)
+    {
+        GameObject _player = PhotonNetwork.Instantiate(go.name, trans.position, Quaternion.identity);
+        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+    }
+    
 }

@@ -41,6 +41,20 @@ public class Viata : MonoBehaviour
     }
     public void Moarte()
     {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            OneVsOneScoreManager.clientScore++;
+        }
+        else 
+        {
+            OneVsOneScoreManager.masterScore++;
+        }
+        ShowUpgradeTree();
         Destroy(gameObject);
+    }
+
+    void ShowUpgradeTree()
+    {
+        Debug.Log("poti upgrada");
     }
 }
