@@ -14,6 +14,8 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public static string gameMode;
     public static string modDeJoc;
     public Text text;
+    public GameObject createRoomGO;
+    public GameObject inRoomGO;
     public void CreateRoom()
     {
         if(roomCode.text!=null)
@@ -32,12 +34,19 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
         Debug.Log("merge");
     }
 
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
     public override void OnJoinedRoom()
     {
         Debug.Log("suntem intr-o camera");
         Debug.Log("in camera "+PhotonNetwork.CurrentRoom.Name);
         Debug.Log("camera are "+PhotonNetwork.CurrentRoom.PlayerCount);
         text.text="Suntem intr-o camera| nume: "+PhotonNetwork.CurrentRoom.Name.ToString()+"| nr playeri:"+PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+        createRoomGO.SetActive(false);
+        inRoomGO.SetActive(true);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) 
