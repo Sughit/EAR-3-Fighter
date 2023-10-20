@@ -12,9 +12,9 @@ public class atacTest : MonoBehaviour
     Collider col;
     bool click;
     bool ok=false;
-    void Start()
+    void Awake()
     {
-        
+        ok=false;
     }
 
     void Update()
@@ -43,15 +43,10 @@ public class atacTest : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     { 
-        if(col.gameObject.tag == "Player")
+        if(col.gameObject.tag == "Player" && ok==true)
             
-                if(ok)
-                {
                     col.GetComponent<PhotonView>().RPC("TakeDamage" , RpcTarget.All, damage);
                     ok=false;
-                    Debug.Log("merge");                    
-                }
-            
-                    
+                    Debug.Log("merge");                               
     }
 }
