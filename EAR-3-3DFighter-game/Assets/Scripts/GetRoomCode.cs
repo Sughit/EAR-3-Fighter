@@ -16,6 +16,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public Text text;
     public GameObject createRoomGO;
     public GameObject inRoomGO;
+    public GameObject joinRoomGO;
     public void CreateRoom()
     {
         if(roomCode.text!=null)
@@ -47,6 +48,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
         text.text="Suntem intr-o camera| nume: "+PhotonNetwork.CurrentRoom.Name.ToString()+"| nr playeri:"+PhotonNetwork.CurrentRoom.PlayerCount.ToString();
         createRoomGO.SetActive(false);
         inRoomGO.SetActive(true);
+        joinRoomGO.SetActive(false);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) 
