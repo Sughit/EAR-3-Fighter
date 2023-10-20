@@ -12,6 +12,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
 //am fost de pe telefon aici
     [PunRPC]
     public static string gameMode;
+    public static string modDeJoc;
     public Text text;
     public GameObject createRoomGO;
     public GameObject inRoomGO;
@@ -56,6 +57,7 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public void SetGameMode(string _gameMode)
     {
         gameMode = _gameMode;
+        modDeJoc = gameMode;
     }
 
     public void StartGame()
@@ -79,4 +81,5 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
                 }
         }
     }
+
 }

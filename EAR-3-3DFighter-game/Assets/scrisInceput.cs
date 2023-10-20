@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class scrisInceput : MonoBehaviour
 {
     public Text text;
     Animator anim;
+    PhotonView p;
     void Awake()
     {
+        PhotonView PV = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
-        SetupText();
+        SetupText(GetRoomCode.gameMode);
         StartCoroutine(DupaCevaTimp());
     }
-
-    void SetupText()
+    [PunRPC]
+    void SetupText(string modDeJoc)
     {
-        switch (GetRoomCode.gameMode)
+        switch (modDeJoc)
         {
             case "1v1":
             text.text= "Your goal is to kill the other Enemy";
