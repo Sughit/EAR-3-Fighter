@@ -13,6 +13,7 @@ public class PlayerSetup : MonoBehaviour
     public GameObject HUD;
     [Header("disabled")]
     public GameObject healthBar;
+    public GameObject TextInceput;
 
     public void IsLocalPlayer()
     {
@@ -22,5 +23,7 @@ public class PlayerSetup : MonoBehaviour
         VCam.SetActive(true);
         HUD.SetActive(true);
         healthBar.SetActive(false);
+        TextInceput.SetActive(true);
+
     }
 }

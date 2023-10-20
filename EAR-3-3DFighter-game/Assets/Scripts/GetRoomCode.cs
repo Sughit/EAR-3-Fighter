@@ -10,18 +10,9 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
     public Text roomCode;
     public Text joinRoomCode;
 //am fost de pe telefon aici
+    [PunRPC]
     public static string gameMode;
     public Text text;
-    bool canLoadScene;
-
-    // void Update()
-    // {
-    //     if(PhotonNetwork.InRoom)
-    //     {
-    //         CheckNumOfPlayers();
-    //     }
-    // }
-
     public void CreateRoom()
     {
         if(roomCode.text!=null)
@@ -60,54 +51,20 @@ public class GetRoomCode : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        // if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
-        // {
-        //     canLoadScene=true;
-        //     if(canLoadScene)
-        //     {
-        //         //if(PhotonNetwork.IsMasterClient)
-        //         //{
-                    
-        //             switch (gameMode)
-        //         {
-        //             case "1v1":
-        //             canLoadScene=false;
-        //             PhotonNetwork.LoadLevel("1v1");
-        //             break;
-        //             case "1v1DF":
-        //             canLoadScene=false;
-        //             PhotonNetwork.LoadLevel("1v1DF");
-        //             break;
-        //             case "wave":
-        //             canLoadScene=false;
-        //             PhotonNetwork.LoadLevel("wave");
-        //             break;
-        //             default:
-        //             canLoadScene=false;
-        //             Debug.Log("Select a game mode");
-        //             break;
-        //         }
-        //         //}
-        //     }
-        // }
         if(PhotonNetwork.IsMasterClient)
         {
             switch (gameMode)
                 {
                     case "1v1":
-                    canLoadScene=false;
                     PhotonNetwork.LoadLevel("1v1");
                     break;
                     case "1v1DF":
-                    canLoadScene=false;
                     PhotonNetwork.LoadLevel("1v1DF");
                     break;
                     case "wave":
-                    canLoadScene=false;
                     PhotonNetwork.LoadLevel("wave");
                     break;
                     default:
-                    canLoadScene=false;
                     Debug.Log("Select a game mode");
                     break;
                 }
