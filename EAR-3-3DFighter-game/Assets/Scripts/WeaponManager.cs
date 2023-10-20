@@ -12,46 +12,88 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     public GameObject axeP;
     public GameObject maceP;
     [Space]
-    public Transform spawnPoint;
+    public Transform masterSpawnPoint;
+    public Transform clientSpawnPoint;
 
     void Awake()
     {
-        spawnPoint=GameObject.Find("SpawnPoint").GetComponent<Transform>();
+        masterSpawnPoint=GameObject.Find("masterSpawnPoint").GetComponent<Transform>();
+        clientSpawnPoint=GameObject.Find("clientSpawnPoint").GetComponent<Transform>();
     }
 
     public void SpawnSwordPlayer()
     {
-        GameObject _player = PhotonNetwork.Instantiate(swordP.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            GameObject _player = PhotonNetwork.Instantiate(swordP.name, masterSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
+        else
+        {
+            GameObject _player = PhotonNetwork.Instantiate(swordP.name, clientSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
         Debug.Log("merge");
         Destroy(this.gameObject);
     }
 
     public void SpawnSpearPlayer()
     {
-        GameObject _player = PhotonNetwork.Instantiate(spearP.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            GameObject _player = PhotonNetwork.Instantiate(spearP.name, masterSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
+        else
+        {
+            GameObject _player = PhotonNetwork.Instantiate(spearP.name, clientSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
         Destroy(this.gameObject);
     }
 
     public void SpawnHammerPlayer()
     {
-        GameObject _player = PhotonNetwork.Instantiate(hammerP.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            GameObject _player = PhotonNetwork.Instantiate(hammerP.name, masterSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
+        else
+        {
+            GameObject _player = PhotonNetwork.Instantiate(hammerP.name, clientSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
         Destroy(this.gameObject);
     }
 
     public void SpawnAxePlayer()
     {
-        GameObject _player = PhotonNetwork.Instantiate(axeP.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            GameObject _player = PhotonNetwork.Instantiate(axeP.name, masterSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
+        else
+        {
+            GameObject _player = PhotonNetwork.Instantiate(axeP.name, clientSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
         Destroy(this.gameObject);
     }
 
     public void SpawnMacePlayer()
     {
-        GameObject _player = PhotonNetwork.Instantiate(maceP.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            GameObject _player = PhotonNetwork.Instantiate(maceP.name, masterSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
+        else
+        {
+            GameObject _player = PhotonNetwork.Instantiate(maceP.name, clientSpawnPoint.position, Quaternion.identity);
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
         Destroy(this.gameObject);
     }
 }

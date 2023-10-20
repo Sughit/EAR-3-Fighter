@@ -520,6 +520,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 2079103563674332591}
   camera: {fileID: 2079103562148735668}
+  triggerAtac: {fileID: 0}
+  VCam: {fileID: 0}
+  HUD: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &2499349012576621644
 GameObject:
   m_ObjectHideFlags: 0
