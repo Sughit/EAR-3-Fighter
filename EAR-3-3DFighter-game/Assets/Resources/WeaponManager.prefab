@@ -1250,11 +1250,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordP: {fileID: 2079103563674332598, guid: ed06f30a6f9d4d342b2f52cc5dd3bde2, type: 3}
-  spearP: {fileID: 2079103563674332598, guid: 9d4ab8ec9379f424288700b081b44ff7, type: 3}
-  hammerP: {fileID: 2079103563674332598, guid: b2098158c8346a74587db68e8d7e3096, type: 3}
-  axeP: {fileID: 2079103563674332598, guid: 0be6421ffe481e844a503e4630d135d2, type: 3}
-  maceP: {fileID: 2079103563674332598, guid: e146ccc80c134174d8087e4e2dbe5e77, type: 3}
-  spawnPoint: {fileID: 0}
+  spearP: {fileID: 1066442555690501668, guid: 9d4ab8ec9379f424288700b081b44ff7, type: 3}
+  hammerP: {fileID: 8344696297393912473, guid: b2098158c8346a74587db68e8d7e3096, type: 3}
+  axeP: {fileID: 3858468896974052977, guid: 0be6421ffe481e844a503e4630d135d2, type: 3}
+  maceP: {fileID: 2899035657953448851, guid: e146ccc80c134174d8087e4e2dbe5e77, type: 3}
+  masterSpawnPoint: {fileID: 0}
+  clientSpawnPoint: {fileID: 0}
 --- !u!114 &-7176032133340037005
 MonoBehaviour:
   m_ObjectHideFlags: 0

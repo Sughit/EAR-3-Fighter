@@ -24,8 +24,16 @@ public class atacTest : MonoBehaviour
                 StartCoroutine(Atac(damage));
             }
         Debug.Log(ok);
+
+        if(ok)
+            StartCoroutine(OK());
     }
 
+    IEnumerator OK()
+    {
+            yield return new WaitForSeconds(0.01f);
+            ok=false;
+    }
     IEnumerator Atac(float damageAtac)
     {
 
@@ -36,7 +44,7 @@ public class atacTest : MonoBehaviour
             ableToAtac=false;
 
             yield return new WaitForSeconds(cooldown);
-            
+
             ableToAtac = true;
         }          
     }
@@ -44,9 +52,11 @@ public class atacTest : MonoBehaviour
     void OnTriggerStay(Collider col)
     { 
         if(col.gameObject.tag == "Player" && ok==true)
-            
+            {
                     col.GetComponent<PhotonView>().RPC("TakeDamage" , RpcTarget.All, damage);
                     ok=false;
-                    Debug.Log("merge");                               
+                    Debug.Log("merge");
+            }
+        else ok=false;                              
     }
 }
