@@ -17,6 +17,9 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     [Space]
     public static string masterPlayer;
     public static string clientPlayer;
+    [Space]
+    public static bool masterJoined;
+    public static bool clientJoined;
 
     void Awake()
     {
@@ -103,17 +106,17 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     public void SpawnPlayer(GameObject go, Transform trans)
     {
         GameObject _player = PhotonNetwork.Instantiate(go.name, trans.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
         if(PhotonNetwork.IsMasterClient)
         {
-            RoomManager.masterID=_player.GetComponent<PhotonView>().ViewID;
+            masterJoined=true;
             Debug.Log("Master id "+RoomManager.masterID);
         }
         else
         {
-            RoomManager.clientID=_player.GetComponent<PhotonView>().ViewID;
+            clientJoined=true;
             Debug.Log("Client id "+RoomManager.clientID);
         }
+        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
     }
     
 }

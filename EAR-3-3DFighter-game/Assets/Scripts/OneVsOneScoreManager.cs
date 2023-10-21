@@ -14,6 +14,17 @@ public class OneVsOneScoreManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Master score: "+masterScore);
+        Debug.Log("Client score: "+clientScore);
+        if(WeaponManager.masterJoined)
+        {
+            this.GetComponent<PhotonView>().RPC("UpdateScore" , RpcTarget.All, null);
+        }
+    }
+
+    [PunRPC]
+    void UpdateScore()
+    {
         masterScoreText.text="M:"+masterScore.ToString();
         clientScoreText.text="C:"+clientScore.ToString();
     }
