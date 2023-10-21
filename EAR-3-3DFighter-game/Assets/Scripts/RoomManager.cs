@@ -10,7 +10,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [Space]
     public static string roomCode = "test";
     public string nume = "1v1";
-    RoomManager instance;
+    public static RoomManager instance;
+    [Space]
+    public static int masterID;
+    public static int clientID;
     
     void Awake()
     {
@@ -25,8 +28,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
         // _player.GetComponent<PlayerSetup>().IsLocalPlayer();
         Debug.Log("You joined "+ PhotonNetwork.CurrentRoom.Name);   
     }
-    void RespawnPlayer()
+    public void RespawnPlayer()
     {
+        DestroyAllPlayers();
         if(PhotonNetwork.IsMasterClient)
         {
             switch(WeaponManager.masterPlayer)
@@ -76,5 +80,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
             }
         }
     }
-
+    void DestroyAllPlayers()
+    {
+        PhotonNetwork.Destroy(PhotonView.Find(masterID));
+        PhotonNetwork.Destroy(PhotonView.Find(clientID));
+    }
 }

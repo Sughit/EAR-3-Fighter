@@ -12,7 +12,6 @@ public class Viata : MonoBehaviour
     public Text text1;
     public Text text2;
     float x;
-    
 
     public float fullHealth=100f;
     void Awake()
@@ -50,7 +49,7 @@ public class Viata : MonoBehaviour
             OneVsOneScoreManager.masterScore++;
         }
         ShowUpgradeTree();
-        Destroy(gameObject);
+        RoomManager.instance.RespawnPlayer();
     }
 
     void ShowUpgradeTree()

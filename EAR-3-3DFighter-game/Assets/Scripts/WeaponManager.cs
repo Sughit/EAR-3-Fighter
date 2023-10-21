@@ -104,6 +104,16 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     {
         GameObject _player = PhotonNetwork.Instantiate(go.name, trans.position, Quaternion.identity);
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            RoomManager.masterID=_player.GetComponent<PhotonView>().ViewID;
+            Debug.Log("Master id "+RoomManager.masterID);
+        }
+        else
+        {
+            RoomManager.clientID=_player.GetComponent<PhotonView>().ViewID;
+            Debug.Log("Client id "+RoomManager.clientID);
+        }
     }
     
 }
