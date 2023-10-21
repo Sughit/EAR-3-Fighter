@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
 
 public class OneVsOneScoreManager : MonoBehaviour
 {
     public static int masterScore;
     public static int clientScore;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Space]
+    public Text masterScoreText;
+    public Text clientScoreText;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        masterScoreText.text="M:"+masterScore.ToString();
+        clientScoreText.text="C:"+clientScore.ToString();
     }
 }
