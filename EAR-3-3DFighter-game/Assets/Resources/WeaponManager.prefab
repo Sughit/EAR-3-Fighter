@@ -1256,6 +1256,7 @@ MonoBehaviour:
   maceP: {fileID: 2899035657953448851, guid: e146ccc80c134174d8087e4e2dbe5e77, type: 3}
   masterSpawnPoint: {fileID: 5873890200066104882, guid: b454055feda19684ab994b716c2a305e, type: 3}
   clientSpawnPoint: {fileID: 2180465831221896508, guid: 97ff959502cac364d8dd7a919dfce6a1, type: 3}
+  roomManager: {fileID: 4385961112257276308, guid: 434f7e39d2387c948a942450d53610b1, type: 3}
 --- !u!114 &-7176032133340037005
 MonoBehaviour:
   m_ObjectHideFlags: 0

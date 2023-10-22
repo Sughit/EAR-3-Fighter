@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using UnityEngine.UI;
+using Photon.Pun;
+using Hashtable=ExitGames.Client.Photon.Hashtable;
 
 public class WeaponManager : MonoBehaviourPunCallbacks
 {
@@ -18,11 +19,18 @@ public class WeaponManager : MonoBehaviourPunCallbacks
     public static string masterPlayer;
     public static string clientPlayer;
     [Space]
+    public static GameObject masterPlayerGO;
+    public static GameObject clientPlayerGO;
+    [Space]
     public static bool masterJoined;
     public static bool clientJoined;
+    [Space]
+    [Header("Managers")]
+    public RoomManager roomManager1v1;
 
     void Awake()
     {
+        roomManager1v1=GameObject.Find("RoomManager1v1").GetComponent<RoomManager>();
         masterSpawnPoint=GameObject.Find("masterSpawnPoint").GetComponent<Transform>();
         clientSpawnPoint=GameObject.Find("clientSpawnPoint").GetComponent<Transform>();
     }
@@ -32,14 +40,15 @@ public class WeaponManager : MonoBehaviourPunCallbacks
         if(PhotonNetwork.IsMasterClient)
         {
             masterPlayer="sword";
-            SpawnPlayer(swordP, masterSpawnPoint);
+            //SpawnPlayer(swordP, masterSpawnPoint);
+            SpawnMasterPlayer(swordP, masterSpawnPoint);
         }
         else
         {
             clientPlayer="sword";
-            SpawnPlayer(swordP, clientSpawnPoint);
+            //SpawnPlayer(swordP, clientSpawnPoint);
+            SpawnClientPlayer(swordP, clientSpawnPoint);
         }
-        Debug.Log("merge");
         Destroy(this.gameObject);
     }
 
@@ -48,12 +57,14 @@ public class WeaponManager : MonoBehaviourPunCallbacks
         if(PhotonNetwork.IsMasterClient)
         {
             masterPlayer="spear";
-            SpawnPlayer(spearP, masterSpawnPoint);
+            //SpawnPlayer(spearP, masterSpawnPoint);
+            SpawnMasterPlayer(spearP, masterSpawnPoint);
         }
         else
         {
             clientPlayer="spear";
-            SpawnPlayer(spearP, clientSpawnPoint);
+            //SpawnPlayer(spearP, clientSpawnPoint);
+            SpawnClientPlayer(spearP, clientSpawnPoint);
         }
         Destroy(this.gameObject);
     }
@@ -63,12 +74,14 @@ public class WeaponManager : MonoBehaviourPunCallbacks
         if(PhotonNetwork.IsMasterClient)
         {
             masterPlayer="hammer";
-            SpawnPlayer(hammerP, masterSpawnPoint);
+            //SpawnPlayer(hammerP, masterSpawnPoint);
+            SpawnMasterPlayer(hammerP, masterSpawnPoint);
         }
         else
         {
             clientPlayer="hammer";
-            SpawnPlayer(hammerP, clientSpawnPoint);
+            //SpawnPlayer(hammerP, clientSpawnPoint);
+            SpawnClientPlayer(hammerP, clientSpawnPoint);
         }
         Destroy(this.gameObject);
     }
@@ -78,12 +91,14 @@ public class WeaponManager : MonoBehaviourPunCallbacks
         if(PhotonNetwork.IsMasterClient)
         {
             masterPlayer="axe";
-            SpawnPlayer(axeP, masterSpawnPoint);
+            //SpawnPlayer(axeP, masterSpawnPoint);
+            SpawnMasterPlayer(axeP, masterSpawnPoint);
         }
         else
         {
             clientPlayer="axe";
-            SpawnPlayer(axeP, clientSpawnPoint);
+            //SpawnPlayer(axeP, clientSpawnPoint);
+            SpawnClientPlayer(axeP, clientSpawnPoint);
         }
         Destroy(this.gameObject);
     }
@@ -93,12 +108,14 @@ public class WeaponManager : MonoBehaviourPunCallbacks
         if(PhotonNetwork.IsMasterClient)
         {
             masterPlayer="mace";
-            SpawnPlayer(maceP, masterSpawnPoint);
+            //SpawnPlayer(maceP, masterSpawnPoint);
+            SpawnMasterPlayer(maceP, masterSpawnPoint);
         }
         else
         {
             clientPlayer="mace";
-            SpawnPlayer(maceP, clientSpawnPoint);
+            //SpawnPlayer(maceP, clientSpawnPoint);
+            SpawnClientPlayer(maceP, clientSpawnPoint);
         }
         Destroy(this.gameObject);
     }
@@ -108,15 +125,38 @@ public class WeaponManager : MonoBehaviourPunCallbacks
         GameObject _player = PhotonNetwork.Instantiate(go.name, trans.position, Quaternion.identity);
         if(PhotonNetwork.IsMasterClient)
         {
+            masterPlayerGO=_player;
             masterJoined=true;
             Debug.Log("Master id "+RoomManager.masterID);
         }
         else
         {
+            clientPlayerGO=_player;
             clientJoined=true;
             Debug.Log("Client id "+RoomManager.clientID);
         }
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
     }
+
+    public void SpawnMasterPlayer(GameObject go, Transform trans)
+    {
+        //spawn player
+        roomManager1v1.masterGO = PhotonNetwork.Instantiate(go.name, trans.position, Quaternion.identity) as GameObject;
+        roomManager1v1.masterGO.GetComponent<PlayerSetup>().IsLocalPlayer();
+        
+        //verification
+        masterJoined=true;
+        Debug.Log("Master id "+RoomManager.masterID);
+    }
     
+    public void SpawnClientPlayer(GameObject go, Transform trans)
+    {
+        //spawn player
+        roomManager1v1.clientGO = PhotonNetwork.Instantiate(go.name, trans.position, Quaternion.identity) as GameObject;
+        roomManager1v1.clientGO.GetComponent<PlayerSetup>().IsLocalPlayer();
+        
+        //verification
+        clientJoined=true;
+        Debug.Log("Client id "+RoomManager.clientID);
+    }
 }

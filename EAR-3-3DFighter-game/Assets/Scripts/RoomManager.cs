@@ -14,6 +14,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [Space]
     public static int masterID;
     public static int clientID;
+    [Space]
+    public GameObject masterGO;
+    public GameObject clientGO;
     
     void Awake()
     {
@@ -30,54 +33,55 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
     public void RespawnPlayer()
     {
-        
         if(PhotonNetwork.IsMasterClient)
         {
-            switch(WeaponManager.masterPlayer)
-            {
-                case "sword":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.swordP,weaponManagerScript.masterSpawnPoint);
-                break;
-                case "spear":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.spearP,weaponManagerScript.masterSpawnPoint);
-                break;
-                case "hammer":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.hammerP,weaponManagerScript.masterSpawnPoint);
-                break;
-                case "axe":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.axeP,weaponManagerScript.masterSpawnPoint);
-                break;
-                case "mace":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.maceP,weaponManagerScript.masterSpawnPoint);
-                break;
-                default:
-                Debug.Log("Ceva nu merge la respawn master");
-                break;
-            }
+            // switch(WeaponManager.masterPlayer)
+            // {
+            //     case "sword":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.swordP,weaponManagerScript.masterSpawnPoint);
+            //     break;
+            //     case "spear":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.spearP,weaponManagerScript.masterSpawnPoint);
+            //     break;
+            //     case "hammer":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.hammerP,weaponManagerScript.masterSpawnPoint);
+            //     break;
+            //     case "axe":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.axeP,weaponManagerScript.masterSpawnPoint);
+            //     break;
+            //     case "mace":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.maceP,weaponManagerScript.masterSpawnPoint);
+            //     break;
+            //     default:
+            //     Debug.Log("Ceva nu merge la respawn master");
+            //     break;
+            // }
+            weaponManagerScript.SpawnPlayer(masterGO, weaponManagerScript.masterSpawnPoint);
         }
         else
         {
-            switch(WeaponManager.clientPlayer)
-            {
-                case "sword":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.swordP,weaponManagerScript.clientSpawnPoint);
-                break;
-                case "spear":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.spearP,weaponManagerScript.clientSpawnPoint);
-                break;
-                case "hammer":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.hammerP,weaponManagerScript.clientSpawnPoint);
-                break;
-                case "axe":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.axeP,weaponManagerScript.clientSpawnPoint);
-                break;
-                case "mace":
-                weaponManagerScript.SpawnPlayer(weaponManagerScript.maceP,weaponManagerScript.clientSpawnPoint);
-                break;
-                default:
-                Debug.Log("Ceva nu merge la respawn client");
-                break;
-            }
+            // switch(WeaponManager.clientPlayer)
+            // {
+            //     case "sword":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.swordP,weaponManagerScript.clientSpawnPoint);
+            //     break;
+            //     case "spear":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.spearP,weaponManagerScript.clientSpawnPoint);
+            //     break;
+            //     case "hammer":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.hammerP,weaponManagerScript.clientSpawnPoint);
+            //     break;
+            //     case "axe":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.axeP,weaponManagerScript.clientSpawnPoint);
+            //     break;
+            //     case "mace":
+            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.maceP,weaponManagerScript.clientSpawnPoint);
+            //     break;
+            //     default:
+            //     Debug.Log("Ceva nu merge la respawn client");
+            //     break;
+            // }
+            weaponManagerScript.SpawnPlayer(clientGO, weaponManagerScript.clientSpawnPoint);
         }
         DestroyAllPlayers();
     }
