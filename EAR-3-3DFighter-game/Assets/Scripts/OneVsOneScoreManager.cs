@@ -14,12 +14,13 @@ public class OneVsOneScoreManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Master score: "+masterScore);
-        Debug.Log("Client score: "+clientScore);
+        // Debug.Log("Master score: "+masterScore);
+        // Debug.Log("Client score: "+clientScore);
         if(WeaponManager.masterJoined)
         {
             this.GetComponent<PhotonView>().RPC("UpdateScore" , RpcTarget.All, null);
         }
+        // UpdateScore();
     }
 
     [PunRPC]
@@ -27,5 +28,10 @@ public class OneVsOneScoreManager : MonoBehaviour
     {
         masterScoreText.text="M:"+masterScore.ToString();
         clientScoreText.text="C:"+clientScore.ToString();
+    }
+
+    public void LockCursor()
+    {
+        Cursor.lockState=CursorLockMode.Locked;
     }
 }

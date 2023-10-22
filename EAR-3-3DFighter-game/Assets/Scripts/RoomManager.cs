@@ -30,7 +30,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
     public void RespawnPlayer()
     {
-        DestroyAllPlayers();
+        
         if(PhotonNetwork.IsMasterClient)
         {
             switch(WeaponManager.masterPlayer)
@@ -79,6 +79,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
                 break;
             }
         }
+        DestroyAllPlayers();
     }
     void DestroyAllPlayers()
     {

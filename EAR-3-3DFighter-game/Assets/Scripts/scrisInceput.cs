@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class scrisInceput : MonoBehaviour
 {
     public Text text;
     Animator anim;
     PhotonView p;
+    public static string currentScene;
     void Awake()
     {
+        currentScene=SceneManager.GetActiveScene().name;
         PhotonView PV = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
         SetupText();
@@ -19,7 +22,7 @@ public class scrisInceput : MonoBehaviour
     [PunRPC]
     void SetupText()
     {
-        switch (GameObject.Find("RoomManager").GetComponent<RoomManager>().nume)
+        switch (GameObject.Find(GetRoomManagerName()).GetComponent<RoomManager>().nume)
         {
             case "1v1":
             text.text= "Your goal is to kill the other Enemy";
@@ -41,5 +44,11 @@ public class scrisInceput : MonoBehaviour
         anim.SetTrigger("AnimatieText");
 
     }
-
+    string GetRoomManagerName()
+    {
+        if(currentScene=="1v1") return "RoomManager1v1";
+        else if(currentScene=="1v1DF") return "RoomManager1v1DF";
+        else if(currentScene=="wave") return "RoomManagerWave";
+        else return null;
+    }
 }
