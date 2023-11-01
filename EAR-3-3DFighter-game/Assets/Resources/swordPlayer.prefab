@@ -1409,6 +1409,7 @@ MonoBehaviour:
   HUD: {fileID: 1671006340}
   healthBar: {fileID: 2017184874}
   TextInceput: {fileID: 376678836}
+  playerTypeGO: {fileID: 0}
 --- !u!135 &3753341052913108100
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1442,6 +1443,7 @@ MonoBehaviour:
   text2: {fileID: 2200853612927738231}
   masterSkillTree: {fileID: 6094491588379252602}
   clientSkillTree: {fileID: 6074943088525348834}
+  oneVsOneScoreManagerGO: {fileID: 0}
 --- !u!1 &2499349012576621644
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class PlayerSetup : MonoBehaviour
     [Header("disabled")]
     public GameObject healthBar;
     public GameObject TextInceput;
+    [Header("properties")]
+    public GameObject playerTypeGO;
 
     public void IsLocalPlayer()
     {
@@ -32,6 +34,19 @@ public class PlayerSetup : MonoBehaviour
         else
         {
             RoomManager.clientID=this.GetComponent<PhotonView>().ViewID;
+        }
+    }
+
+    public void GetPlayerType(GameObject _playerTypeGO)
+    {
+        playerTypeGO=_playerTypeGO;
+        if(PhotonNetwork.IsMasterClient)
+        {
+            RoomManager.masterGO=_playerTypeGO;
+        }
+        else
+        {
+            RoomManager.clientGO=_playerTypeGO;
         }
     }
 }

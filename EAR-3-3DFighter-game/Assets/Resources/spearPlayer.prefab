@@ -228,6 +228,7 @@ MonoBehaviour:
   HUD: {fileID: 1303429761147462422}
   healthBar: {fileID: 1303429760721856504}
   TextInceput: {fileID: 1546167198260058251}
+  playerTypeGO: {fileID: 0}
 --- !u!135 &2738256448663498518
 SphereCollider:
   m_ObjectHideFlags: 0

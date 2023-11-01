@@ -15,8 +15,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public static int masterID;
     public static int clientID;
     [Space]
-    public GameObject masterGO;
-    public GameObject clientGO;
+    public static GameObject masterGO;
+    public static GameObject clientGO;
     
     void Awake()
     {
@@ -27,67 +27,46 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         weaponManagerScript=weaponManager.GetComponent<WeaponManager>();
         GameObject _weaponManager = Instantiate(weaponManager, Vector3.zero, Quaternion.identity);
-        // GameObject _player = PhotonNetwork.Instantiate(player.name,Vector3.zero, Quaternion.identity);
-        // _player.GetComponent<PlayerSetup>().IsLocalPlayer();
         Debug.Log("You joined "+ PhotonNetwork.CurrentRoom.Name);   
     }
     public void RespawnPlayer()
     {
-        if(PhotonNetwork.IsMasterClient)
+        GameObject[] playersArray = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in playersArray)
         {
-            // switch(WeaponManager.masterPlayer)
-            // {
-            //     case "sword":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.swordP,weaponManagerScript.masterSpawnPoint);
-            //     break;
-            //     case "spear":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.spearP,weaponManagerScript.masterSpawnPoint);
-            //     break;
-            //     case "hammer":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.hammerP,weaponManagerScript.masterSpawnPoint);
-            //     break;
-            //     case "axe":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.axeP,weaponManagerScript.masterSpawnPoint);
-            //     break;
-            //     case "mace":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.maceP,weaponManagerScript.masterSpawnPoint);
-            //     break;
-            //     default:
-            //     Debug.Log("Ceva nu merge la respawn master");
-            //     break;
-            // }
-            weaponManagerScript.SpawnPlayer(masterGO, weaponManagerScript.masterSpawnPoint);
+            if(player.GetComponent<PhotonView>().Owner.IsMasterClient)
+            {
+                player.GetComponent<Viata>().health=100f;
+                player.transform.position = new Vector3(WeaponManager.masterSpawnPoint.position.x,
+                                                        WeaponManager.masterSpawnPoint.position.y,
+                                                        WeaponManager.masterSpawnPoint.position.z);
+            }
+            else
+            {
+                player.GetComponent<Viata>().health=100f;
+                player.transform.position = new Vector3(WeaponManager.clientSpawnPoint.position.x,
+                                                        WeaponManager.clientSpawnPoint.position.y,
+                                                        WeaponManager.clientSpawnPoint.position.z);
+            }
         }
-        else
-        {
-            // switch(WeaponManager.clientPlayer)
-            // {
-            //     case "sword":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.swordP,weaponManagerScript.clientSpawnPoint);
-            //     break;
-            //     case "spear":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.spearP,weaponManagerScript.clientSpawnPoint);
-            //     break;
-            //     case "hammer":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.hammerP,weaponManagerScript.clientSpawnPoint);
-            //     break;
-            //     case "axe":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.axeP,weaponManagerScript.clientSpawnPoint);
-            //     break;
-            //     case "mace":
-            //     weaponManagerScript.SpawnPlayer(weaponManagerScript.maceP,weaponManagerScript.clientSpawnPoint);
-            //     break;
-            //     default:
-            //     Debug.Log("Ceva nu merge la respawn client");
-            //     break;
-            // }
-            weaponManagerScript.SpawnPlayer(clientGO, weaponManagerScript.clientSpawnPoint);
-        }
-        DestroyAllPlayers();
+
+        // DestroyAllPlayers();
+        // GameObject[] playersArray = GameObject.FindGameObjectsWithTag("Player");
+        // foreach(GameObject player in playersArray)
+        // {
+        //     if(player.GetComponent<PhotonView>().Owner.IsMasterClient)
+        //     {
+        //         weaponManagerScript.SpawnPlayer(player.GetComponent<PlayerSetup>().playerTypeGO, weaponManagerScript.masterSpawnPoint);
+        //     }
+        //     else
+        //     {
+        //         weaponManagerScript.SpawnPlayer(player.GetComponent<PlayerSetup>().playerTypeGO, weaponManagerScript.clientSpawnPoint);
+        //     }
+        // }
     }
-    void DestroyAllPlayers()
-    {
-        PhotonNetwork.Destroy(PhotonView.Find(masterID));
-        PhotonNetwork.Destroy(PhotonView.Find(clientID));
-    }
+    // void DestroyAllPlayers()
+    // {
+    //     PhotonNetwork.Destroy(PhotonView.Find(masterID));
+    //     PhotonNetwork.Destroy(PhotonView.Find(clientID));
+    // }
 }

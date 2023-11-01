@@ -30,6 +30,18 @@ public class OneVsOneScoreManager : MonoBehaviour
         clientScoreText.text="C:"+clientScore.ToString();
     }
 
+    public void IncreaseClientScore()
+    {   
+        clientScore++;
+        this.GetComponent<PhotonView>().RPC("UpdateScore" , RpcTarget.All, null);
+    }
+
+    public void IncreaseMasterScore()
+    {
+        masterScore++;
+        this.GetComponent<PhotonView>().RPC("UpdateScore" , RpcTarget.All, null);
+    }
+
     public void LockCursor()
     {
         Cursor.lockState=CursorLockMode.Locked;

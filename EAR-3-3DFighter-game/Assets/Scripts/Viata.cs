@@ -19,13 +19,13 @@ public class Viata : MonoBehaviour
     public GameObject masterSkillTree;
     public GameObject clientSkillTree;
     [Space]
-    bool canIncreaseScore;
+    public OneVsOneScoreManager oneVsOneScoreManagerGO;
 
     void Awake()
     {
-        canIncreaseScore=true;
         if(scrisInceput.currentScene=="1v1")
         {
+            oneVsOneScoreManagerGO=GameObject.FindWithTag("ScoreManager").GetComponent<OneVsOneScoreManager>();
             Debug.Log("Suntem in 1v1");
         }
         sliderViata.value= health / fullHealth;
@@ -54,33 +54,27 @@ public class Viata : MonoBehaviour
 
     public void Moarte()
     {
-        if(canIncreaseScore)
+        if(PhotonNetwork.IsMasterClient)
         {
-            if(PhotonNetwork.IsMasterClient)
+            if(health==0)
             {
-                if(health==0)
+                oneVsOneScoreManagerGO.IncreaseClientScore();
+                if(scrisInceput.currentScene=="1v1")
                 {
-                    OneVsOneScoreManager.clientScore++;
-                    if(scrisInceput.currentScene=="1v1")
-                    {
-                        Cursor.lockState=CursorLockMode.None;
-                        ShowUpgradeTree();
-                    }
-                }
-                else
-                {
-                    OneVsOneScoreManager.masterScore++;
-                    if(scrisInceput.currentScene=="1v1")
-                    {
-                        Cursor.lockState=CursorLockMode.None;
-                        ShowUpgradeTree();
-                    }
+                    Cursor.lockState=CursorLockMode.None;
+                    ShowUpgradeTree();
                 }
             }
-            canIncreaseScore=false;
+            else
+            {
+                oneVsOneScoreManagerGO.IncreaseMasterScore();
+                if(scrisInceput.currentScene=="1v1")
+                {
+                    Cursor.lockState=CursorLockMode.None;
+                    ShowUpgradeTree();
+                }
+             }
         }
-        
-        // RoomManager.instance.RespawnPlayer();
     }
 
     void ShowUpgradeTree()
